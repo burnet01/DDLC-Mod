@@ -25,6 +25,11 @@ if (-not (Test-Path $exe)) {
 
 $project = Split-Path -Parent $PSScriptRoot
 
+# DDLC only allows one running instance; lint/launch silently quit otherwise.
+if (Get-Process DDLC -ErrorAction SilentlyContinue) {
+    throw "DDLC (or this mod) is already running. Close the game window and try again."
+}
+
 foreach ($rpa in "audio.rpa", "images.rpa", "fonts.rpa") {
     if (-not (Test-Path (Join-Path $project "game\$rpa"))) {
         Write-Host "Copying $rpa from DDLC..."

@@ -36,6 +36,10 @@ label test_chapter:
             $ test_choice = "cupcakes"
             jump test_chapter_cupcakes
 
+        "...Donuts?":
+            $ test_choice = "donuts"
+            jump test_chapter_donuts
+
 label test_chapter_cookies:
     s 4r "Cookies it is! Easy to share, hard to drop."
     mc "That second part sounds like experience talking."
@@ -46,6 +50,13 @@ label test_chapter_cupcakes:
     s 4b "Cupcakes! Ooh, with frosting!"
     mc "Just don't let Natsuki find out you bought them from a store."
     s 1k "I'll keep it a secret. Ehehe~"
+    jump test_chapter_end
+
+label test_chapter_donuts:
+    s 4h "Donuts?! That wasn't even one of the options!"
+    mc "Who says it has to be one of the options?"
+    s 4r "You're right! Rules are just suggestions when donuts are involved!"
+    s 1k "I'm getting the ones with sprinkles. Lots of sprinkles."
     jump test_chapter_end
 
 label test_chapter_end:
