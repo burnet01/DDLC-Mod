@@ -270,6 +270,8 @@ label splashscreen:
         "[config.name] is a Doki Doki Literature Club fan mod that is not affiliated with Team Salvato."
         "It is designed to be played only after the official game has been completed, and contains spoilers for the official game."
         "Game files for Doki Doki Literature Club are required to play this mod and can be downloaded for free at: http://ddlc.moe"
+        "Content warning: this mod contains depictions of suicide, death, and themes that may be disturbing to some players."
+        "If you are struggling, please reach out to someone you trust or a local crisis line. You are not alone."
 
         menu:
             "By playing [config.name] you agree that you have completed Doki Doki Literature Club and accept any spoilers contained within."

@@ -11,7 +11,7 @@ define gui.show_name = True
 define config.version = "0.1.0"
 
 # text placed on about screen
-define gui.about = _("")
+# gui.about is defined in screens.rpy (credits)
 
 # short name used in executables and dirs.
 # ASCII-only, no spaces, no colons, no semis
@@ -171,6 +171,7 @@ init python:
 
     # stuff not in archive
     build.classify('README.html', build.name)
+    build.classify('CREDITS.md', build.name)
 
     # Doki Doki Mod Manager metadata file
     build.classify('ddmm-mod.json', build.name)

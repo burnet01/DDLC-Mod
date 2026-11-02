@@ -24,7 +24,19 @@ label start:
     $ allow_skipping = True
     $ config.allow_skipping = True
 
-    call test_chapter from _call_test_chapter
+    # Developer shortcut menu (only appears when running from source).
+    if config.developer:
+        menu:
+            "Play from the start":
+                pass
+            "[[Dev] Sprite viewer":
+                call sprite_viewer from _call_sprite_viewer
+                return
+
+    call prologue_main from _call_prologue_main
+    call ch1_main from _call_ch1_main
+    call ch2_main from _call_ch2_main
+    call ch3_main from _call_ch3_main
 
     call endgame from _call_endgame
     return

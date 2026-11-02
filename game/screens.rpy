@@ -473,7 +473,7 @@ screen navigation():
 
             textbutton _("Settings") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
-            #textbutton _("About") action ShowMenu("about")
+            textbutton _("About") action ShowMenu("about")
 
             if renpy.variant("pc"):
 
@@ -762,8 +762,14 @@ screen about():
             text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
-## This is redefined in options.rpy to add text to the about screen.
-define gui.about = ""
+## Credits shown on the About screen. Required by asset licenses - keep up to date.
+define gui.about = _("An unofficial fan mod of Doki Doki Literature Club! by Team Salvato. Requires the original game: {a=https://ddlc.moe}ddlc.moe{/a}\n\n"
+    "L/Libitina by GanstaKingofSA / bronya_rand (Azariel Del Carmen) and their father. Commissioned by Cyrke for \"Doki Doki Literature Club: The True Reality\". "
+    "Reminiscent Regalia outfit by bronya_rand, commissioned by Storm Blaze, partly paid by Retronika. "
+    "{a=https://drive.google.com/drive/folders/1tA2ssy3Tn8w2JdvVbZPjxee4_e-bWKl6}Asset link{/a}\n\n"
+    "Backgrounds from the {a=https://www.dokimoddingarchive.com/backgrounds}DokiModding Archive{/a}: Science Lab and Natsuki's House by kjkjmulo, Team Relations. Restaurant by Q. Music Room by {a=https://www.deviantart.com/thatjacobguy50/art/DDLC-New-Music-Room-Background-1368615657}thatjacobguy50{/a}.\n\n"
+    "Cassian by StormBlaze76 (@StormBlaze76 & @kidextreme101), commissioned by KegHoshino101. Zach art by @Lecraftx9.\n\n"
+    "DDLC Mod Template by the Monika After Story team.")
 
 
 style about_label is gui_label

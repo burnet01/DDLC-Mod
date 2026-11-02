@@ -6,7 +6,8 @@
 #If you plan on adding new content, pop them over down there and mimic the appropriate lines!
 define persistent.demo = False
 define persistent.steam = False
-define config.developer = False #Change this flag to True to enable dev tools
+# Dev tools turn on only when launched via tools/run.ps1 (sets DDLC_MOD_DEV). Players never get them.
+define config.developer = "DDLC_MOD_DEV" in __import__("os").environ
 
 python early:
     import singleton

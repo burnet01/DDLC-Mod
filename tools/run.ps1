@@ -37,6 +37,9 @@ foreach ($rpa in "audio.rpa", "images.rpa", "fonts.rpa") {
     }
 }
 
+# Turns on Ren'Py developer mode (Shift+R reload, Shift+O console, dev menu).
+$env:DDLC_MOD_DEV = "1"
+
 $argList = @("-EO", "`"$py`"", "`"$project`"")
 if ($Command) { $argList += $Command }
 

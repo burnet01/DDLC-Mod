@@ -18,3 +18,5 @@ characters/*.chr
 lint.txt
 traceback.txt
 game/saves/
+*.zip
+errors.txt
