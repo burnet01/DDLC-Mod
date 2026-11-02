@@ -15,52 +15,81 @@ label ch3_main:
 ## Morning - picking up Natsuki
 ########################################################################
 label ch3_morning:
+    if sayori_dead:
+        jump ch3_morning_grief
+
     scene bg natsuki_house_day
     with dissolve_scene_full
     play music t2
 
-    "Sayori texted at 7:02 to say she was running late and to go without her. She texted again at 7:03 to say she was still in bed. Then at 7:04: a single crying emoji."
-    "So I swing by Natsuki's instead."
-    "The weekend was good. Really good. Bartholomew turned out to be a very large orange cat who sat on Yuri's lap the entire time and glared at me like I was a threat to the throne."
-    "Yuri held my hand under the table. I bought her a book of letters by the two poets she'd been reading."
-    "She cried a little. In a good way."
+    if sayori_got_help:
+        "Sayori texted at 7:02 to say her mom's driving her today, because of the doctor. Then: {i}medium day!!{/i} Then a frog emoji."
+    else:
+        "Sayori texted at 7:02 to say she was running late and to go without her. Then at 7:04: a single crying emoji."
+    "So I swing by Natsuki's."
+
+    if partner == "yuri":
+        "The weekend was good. Really good. Bartholomew turned out to be a very large orange cat who sat on Yuri's lap the entire time and glared at me like I was a threat to the throne."
+        "Yuri held my hand under the table. She cried a little when I gave her a book. In a good way."
+    elif partner == "natsuki":
+        "The weekend was good. Really good. Natsuki beat me at every game in the arcade and then won me a stuffed shark from the claw machine and said it was \"a pity shark.\""
+        "When I walked her home she held my hand for the last block. Neither of us said anything about it."
+    elif partner == "sayori":
+        "The weekend was good. Sayori's mom made pancakes shaped like hearts and then cried into the batter, a little, and hugged us both."
+        "Saturday was a medium day. Sunday was a good one."
 
     show natsuki 1k zorder 2 at t11
-    n "Why are you here? It's Monday. You don't walk me on Mondays."
-    mc "Sayori's still in bed."
-    n 2g "So I'm the backup."
-    mc "You're the upgrade."
-    n 2s "...Okay, nice save."
+    if partner == "natsuki":
+        n 1o "You're early. Why are you early. Did you think about this? Is this a boyfriend thing?"
+        mc "It's a Monday thing."
+        n 1s "...Okay. Good. Mondays are allowed."
+    else:
+        n "Why are you here? You don't walk me on Mondays."
+        mc "Sayori's not coming."
+        n 2g "So I'm the backup."
+        mc "You're the upgrade."
+        n 2s "...Okay, nice save."
 
     show natsuki 1a zorder 2 at t11
-    "We walk. She's got my lighthouse book under her arm."
-    n 1c "I finished it."
-    mc "Already? It's like four hundred pages."
-    n 1i "I couldn't stop. The ending, when the lighthouse keeper finally sees the sunrise and it's not what she thought it would be..."
-    n 1u "I didn't cry. For the record."
-    mc "For the record."
-    n 1j "I cried a lot."
-    n 1a "Thanks for lending it to me."
-    mc "I'm halfway through {i}Parfait Girls.{/i}"
-    n 1l "Really? Do you like it?"
-    mc "I like it."
-    n 1z "I knew it! I {i}knew{/i} you'd like it!"
+    n 1c "I finished your lighthouse book."
+    n 1i "The ending, when she finally sees the sunrise and it's not what she thought it would be..."
+    n 1j "I didn't cry. For the record. ...I cried a lot."
 
     if have_natsuki_charm:
-        show natsuki 1j zorder 2 at t11
-        "Halfway there, I catch her looking at my backpack. At the little felt cupcake clipped to the zipper."
+        "Halfway there, I catch her looking at the little felt cupcake clipped to my backpack."
         n 1y "...You kept it on."
         mc "Of course I kept it on."
-        n 1u "Over the whole weekend? Even on your date?"
-        mc "Even on my date."
-        n 1j "..."
         n 4x "W-whatever! Good! It'd be a waste of forty stab wounds otherwise!"
-        "She walks a little closer to me after that. Not a lot. Just a little."
+        "She walks a little closer to me after that."
 
-    "She's bright and loud the whole way there. Normal Natsuki."
     "Monday. First period."
-    "I've got Kara's letter in my jacket again. I took it out of the drawer this morning. I'm going to give it back to her."
-    "No. Not give it back. That's cruel. I'm going to tell her thank you, and I'm going to tell her the truth."
+    "I've got Kara's letter in my jacket again. I'm going to tell her thank you, and I'm going to tell her the truth."
+
+    stop music fadeout 2.0
+    return
+
+label ch3_morning_grief:
+    scene bg residential_day
+    with dissolve_scene_full
+    play music t9
+
+    "I walk past Sayori's house without looking at it."
+    "I've been practicing that all weekend. Walking past without looking."
+    "Somebody's left flowers on her porch. A lot of flowers. And a stuffed frog."
+    "I look anyway."
+
+    show natsuki 1n zorder 2 at t11
+    "Natsuki is waiting at the corner. She's never waited at the corner before. It's the wrong direction from her house."
+    n "My mom drove me. I told her I'm walking with you. Every day, for a while. Don't argue."
+    mc "I wasn't going to."
+    n 1u "...Did you sleep?"
+    mc "Some."
+    n 1n "Liar."
+    if have_natsuki_charm:
+        "She looks at the little felt cupcake on my backpack. She doesn't say anything about it. She just hooks her finger through my backpack strap and holds on."
+    "The funeral is Thursday. My mom says I don't have to go to school today."
+    "I'm going anyway. I don't know what else to do with myself."
+    "Kara's letter is still in my jacket. I found it again this morning. I'm going to tell her the truth. It feels like the only thing left I can still do right."
 
     stop music fadeout 2.0
     return
@@ -135,7 +164,10 @@ label ch3_first_period:
     "I take a breath. I came here to do this. I'm going to do it."
 
     mc "Kara... about the letter."
-    mc "The letter Monika gave me. On Valentine's Day. I know it was from you. And I wanted to say thank you, and that I'm really sorry, because I should have come to find you, and I didn't, and..."
+    if went_lab_late:
+        mc "The letter Monika gave me. I know it was from you. I came to find you on Thursday. I was four minutes late. I'm so sorry, I should have come first, I..."
+    else:
+        mc "The letter Monika gave me. On Valentine's Day. I know it was from you. And I wanted to say thank you, and that I'm really sorry, because I should have come to find you, and I didn't, and..."
 
     show kara 1b zorder 2 at t11
     "She's just looking at me."
@@ -165,6 +197,11 @@ label ch3_hallway:
     with wipeleft_scene
     play music t7
 
+    if sayori_dead:
+        "The morning announcements this morning started with a moment of silence."
+        "The principal said Sayori's name. He said she was kind, and bright, and loved. He said counselors would be in the library all week."
+        "The whole school was quiet for one minute."
+        "He didn't say anything about anyone else."
     "Between first and second period, the first-floor hallway is wrong."
     "The student council drop box is gone. The gray metal one that's been bolted next to the council door since before any of us were born."
     "There are four clean screw holes in the wall where it used to be."
@@ -202,6 +239,12 @@ label ch3_hallway:
     show monika 1g zorder 2 at t11
     m "Be careful, [player]. Okay?"
     m 1a "I'm not saying that as the council secretary. Just as your friend."
+    if sayori_dead:
+        m 1q "And [player]... about Sayori."
+        m 1r "She sat on my desk every lunch and ate my crackers. I keep leaving them out."
+        m 1f "It isn't your fault. Whatever you said to her on Thursday. Please hear that from someone."
+        mc "..."
+        m 1g "Ms. Reyes is in the library. Go today. Promise me."
 
     hide monika
     with dissolve

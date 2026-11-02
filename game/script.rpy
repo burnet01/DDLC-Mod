@@ -35,6 +35,13 @@ label start:
 
     call prologue_main from _call_prologue_main
     call ch1_main from _call_ch1_main
+
+    # Found Kara in the lab on Thursday: she lives, and the story ends here.
+    if kara_saved:
+        call ending_kara from _call_ending_kara
+        call endgame from _call_endgame_kara
+        return
+
     call ch2_main from _call_ch2_main
     call ch3_main from _call_ch3_main
 

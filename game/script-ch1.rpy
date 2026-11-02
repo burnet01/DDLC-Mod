@@ -16,6 +16,17 @@ default left_note_kara = False       # ch2 lab -> something answers it on Monday
 default invited_zach = False         # ch2 lunch -> Zach brings a clue on Monday
 default clues = 0                    # how much [player] has pieced together by the end of ch3
 
+# The Valentine's choice (see script-ch1-routes.rpy)
+default vday_pick = None             # "kara", "yuri", "natsuki", "sayori", "monika"
+default partner = None               # who [player] ends Thursday with: "yuri", "natsuki", "sayori" or None
+default kara_saved = False           # found Kara in the lab -> Kara ending, ch2/ch3 never happen
+default sayori_dead = False          # Sayori route, wrong answer -> she dies Friday morning
+default sayori_got_help = False      # Sayori route, right answer -> she tells someone
+default went_lab_late = False        # got to the lab after 5:40 and she was already gone
+default kara_counselor = False       # Kara ending flavor
+default yuri_score = 0
+default natsuki_score = 0
+
 # Lunch choices (free roam, two visits before the bell)
 default ch1_lunch_natsuki = False
 default ch1_lunch_yuri = False
@@ -54,7 +65,6 @@ label ch1_main:
     call ch1_lunch from _call_ch1_lunch
     call ch1_club from _call_ch1_club
     call ch1_after_club from _call_ch1_after_club
-    call ch1_walk_natsuki from _call_ch1_walk_natsuki
     return
 
 ########################################################################
@@ -703,167 +713,6 @@ label ch1_club:
     hide sayori
 
     m 1k "Okay! That's the meeting, everyone. Happy Valentine's Day. Go home, eat chocolate, be nice to each other."
-
-    stop music fadeout 3.0
-    return
-
-########################################################################
-## After the club - Yuri
-########################################################################
-label ch1_after_club:
-    scene bg club_day
-    with dissolve_scene_full
-
-    "Everyone starts packing up."
-    "The letter is still in my jacket."
-    "{i}If you like me back... find me? You'll know where.{/i}"
-    "The science lab is on the second floor. If Kara's waiting, she's waiting there. I'm almost sure of it."
-    "I pick up my bag and head for the door."
-
-    y "[player]."
-
-    show yuri 3o zorder 2 at t11
-    play music t10 fadeout 2.0
-    "Yuri is standing by the window. Everyone else is already gone. I didn't even notice them leave."
-    y 3p "C-could you... stay a minute? Please?"
-    y 3n "I won't keep you long. I know you probably have somewhere to be."
-
-    "I do."
-    "I put my bag down anyway."
-
-    y 1g "That poem. Number four."
-    mc "I know."
-    y 1v "You... you knew it was mine."
-    mc "You still dot your i's with tiny circles. You've done that since September."
-    y 1w "..."
-    y 3u "Ah. I suppose I'm not very good at anonymity."
-
-    "She takes the pink envelope out of her book. The one from lunch. Or the one I saw her with, anyway."
-    y 1h "I wrote it on Sunday. On Monday morning I walked to your locker to leave it there, and I stood in front of it holding this until the first bell rang."
-    y 1v "And then I walked away, because I was a coward."
-    y 1w "I'm always a coward. That's... that's why we ended, isn't it? Because I didn't say anything. I just got quieter and quieter and waited for you to notice."
-    mc "I did notice. I thought it meant you were done with me."
-    y 1e "Done with you?"
-    mc "So I got quiet too. I figured if I left first, it wouldn't hurt as much."
-    y 1f "But that's... that's exactly what I thought {i}you{/i} were doing."
-    mc "..."
-    y 1o "We're both very stupid."
-    mc "Yeah."
-
-    "And she laughs. Just a little. The first time I've heard her laugh in three months."
-
-    y 1u "Will you read it? The letter? You don't have to answer. I just... I want you to have it. I want one thing to finally be said out loud. Even if it's on paper."
-
-    "She holds it out."
-    "In my jacket, the other letter is pressing against my chest."
-    "{i}Find me.{/i}"
-    "Kara. Kara is maybe waiting right now, on a spinning stool, in a room where the lights hum."
-    "..."
-    "But Yuri is right here."
-    "And I realize I've been waiting three months for her to say something. Anything. And here she is, saying it."
-    "I take the envelope."
-    "I don't open it."
-
-    mc "I don't need to read it."
-    y 1g "Oh..."
-    mc "Yuri. I'd like to know how the story ends too."
-
-    show yuri 1v zorder 3 at f11
-    y "..."
-    y 1w "R-really?"
-    mc "Really."
-
-    "She steps closer. She's shaking a little. So am I."
-    "I've kissed exactly one person in my life, and it was her, in this room, in October, and we were both so nervous we bumped noses."
-    "This time we don't."
-    "It's short and soft, and when we pull apart, she's crying, but she's smiling too."
-
-    y 1c "I missed you. I missed you so much."
-    mc "I missed you too."
-    y 1d "Is this... are we..."
-    mc "If you want to be."
-    y 3s "I want to be."
-
-    "We stand there, by the window, until the sun's almost down."
-    "I tell myself I'll talk to Kara tomorrow. I'll find her in first period and I'll be honest, and kind, and it'll be awkward, but she'll understand."
-    "That's the right thing to do. Tomorrow."
-    "I don't go to the science lab."
-
-    stop music fadeout 3.0
-    return
-
-########################################################################
-## Walking Natsuki home
-########################################################################
-label ch1_walk_natsuki:
-    scene bg natsuki_house_dusk
-    with wipeleft_scene
-    play music t8
-
-    "Natsuki was waiting at the school gate. She said she wasn't waiting for me. She was waiting for \"the weather.\""
-    "We always walk home together on Thursdays. Her house is on the way to mine, sort of, if you take the long way. I always take the long way."
-
-    show natsuki 1a zorder 2 at t11
-    n "You're doing a weird face."
-    mc "I don't have a weird face."
-    n 1t "You have a {i}huge{/i} weird face. You've been smiling at nothing for six blocks. It's creepy."
-    mc "..."
-    mc "Yuri and I got back together."
-
-    show natsuki 1k zorder 2 at t11
-    n "..."
-    n 1c "Oh."
-    n 1l "Oh! Wow! That's- that's great! Seriously!"
-    n 1d "I knew that poem was hers. Number four. I {i}knew{/i} it. She does that thing with the circles."
-    mc "That's what I said!"
-
-    "She laughs, and punches my shoulder, and for a second everything is completely normal."
-
-    n 1u "So, the letter. The love letter. Was it from her?"
-    mc "...No. I don't think so."
-    n 1g "Then who-"
-    mc "I'm going to talk to them tomorrow. Explain."
-    n 1u "..."
-    n 1n "Yeah. You should. That's... somebody put their heart in an envelope, dummy. You don't just leave it there."
-    mc "I know."
-    n 1a "Okay."
-
-    "We're at her gate."
-    "She stands there with her hand on it for a second, not opening it."
-
-    n 1j "Hey, [player]."
-    mc "Yeah?"
-    n 1i "..."
-    n 1y "Happy Valentine's Day. I'm glad you're happy. Like, actually."
-
-    if asked_natsuki_gift:
-        n 1i "And, um..."
-        "She pulls the little pink package out of her bag and shoves it at my chest without looking at me."
-        n 1s "Here. The festive math thing."
-        mc "It was for me?"
-        n 1o "It's a {i}friend{/i} thing! Best friends give each other stuff! That's a normal, regular thing that friends do!"
-        "I unwrap it. It's a keychain: a tiny felt cupcake with pink frosting, hand-stitched. The stitches are a little uneven. There's a little extra frosting heart on the side."
-        mc "You made this?"
-        n 1w "...Took me three weeks. I stabbed myself like forty times."
-        mc "Natsuki. I love it."
-        n 1u "..."
-        n 1j "Yeah, well. Don't lose it, dummy."
-        "I clip it onto my backpack right there. She watches me do it like she's memorizing it."
-        $ have_natsuki_charm = True
-
-    n 4x "Now go home before I change my mind about the cupcake! I'll take it back! I'll take it back from your stomach!"
-
-    hide natsuki
-    with dissolve
-    "I walk the rest of the way home with my hands in my pockets."
-    "One pocket has Yuri's letter, unopened."
-    "The other has Kara's."
-    "When I glance back at the corner, Natsuki's still standing at her gate, watching me go."
-    if have_natsuki_charm:
-        "After a second, she waves. Small. Like she isn't sure she's allowed to."
-    else:
-        "She doesn't wave."
-        "I wonder, later, whatever happened to that little pink package."
 
     stop music fadeout 3.0
     return
